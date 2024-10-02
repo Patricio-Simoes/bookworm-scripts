@@ -28,7 +28,8 @@ while [ "$flag" = false ]; do
     echo "  1. Gnome"
     echo "  2. KDE"
     echo "Window Managers"
-    echo "  3. sway"
+    echo "  3. i3"
+    echo "  4. sway"
     echo -n "Your choice: "
     read -r input
 
@@ -45,17 +46,22 @@ if [ "$input" = "1" ]; then
 	echo "Installing Gnome..."
 	sleep 2
     clear
-    ./scripts/install/gnome-install.sh
+    ./scripts/install/gnome_install.sh
 elif [ "$input" = "2" ]; then
 	echo "Installing KDE..."
 	sleep 2
     clear
-    ./scripts/install/kde-install.sh
+    ./scripts/install/kde_install.sh
 elif [ "$input" = "3" ]; then
+	echo "Installing i3..."
+	sleep 2
+    clear
+    ./scripts/install/i3_install.sh
+elif [ "$input" = "4" ]; then
 	echo "Installing Sway..."
 	sleep 2
     clear
-    ./scripts/install/i3-install.sh
+    ./scripts/install/sway_install.sh
 fi
 
 input=""

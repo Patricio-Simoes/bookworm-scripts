@@ -13,7 +13,7 @@ read_packages() {
     if [ -f "$base_file" ]; then
         packages+=( $(< "$base_file") )
     else
-        echo "File not found: $common_file"
+        echo "File not found: $base_file"
         exit 1
     fi
 }
@@ -49,23 +49,9 @@ install_packages() {
         echo "All required packages are already installed."
     fi
 }
-# Function to enable touchpad clicks on x11.
-
-enable_clicks() {
-	local file_path="/etc/X11/xorg.conf.d"
-	sudo mkdir -p $file_path
-	cat <<EOF > $filepath
-	Section "InputClass"
-		Identifier "touchpad"
-		MatchIsTouchpad "on"
-		Driver "libinput"
-		Option "Tapping" "on"
-	EndSection
-	EOF
-}
 
 # Call function to install packages.
 
 install_packages "${packages[@]}"
 
-enable_clicks
+sudo apt remove --purge policykit-1-gnome -y

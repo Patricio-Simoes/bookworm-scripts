@@ -4,4 +4,3 @@ lxappearance
 rofi
 x11-xserver-utils
 xorg
-xrandr

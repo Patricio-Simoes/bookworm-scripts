@@ -51,3 +51,5 @@ install_packages() {
 # Call function to install packages.
 
 install_packages "${packages[@]}"
+
+sudo apt remove --purge policykit-1-gnome -y
