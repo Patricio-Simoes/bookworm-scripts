@@ -2,6 +2,7 @@
 
 packages=(
 	"sway"
+	"swaylock"
 )
 
 # Function to read common packages from a file.

@@ -1,6 +1,7 @@
 conky
 lightdm
 lxappearance
+picom
 rofi
 x11-xserver-utils
 xorg
