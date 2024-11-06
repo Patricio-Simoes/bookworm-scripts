@@ -1,0 +1,12 @@
+alacritty
+blueman
+bluez
+dunst
+feh
+lm-sensors
+lxpolkit
+network-manager
+pavucontrol
+ristretto
+thunar
+zip

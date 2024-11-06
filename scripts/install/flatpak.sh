@@ -54,6 +54,14 @@ if [ "$input" = "Y" ] || [ "$input" = "y" ]; then
 	packages="$packages org.gimp.GIMP"
 fi
 
+echo -n "Install LibreOffice? [Y/N]: "
+read -r input
+
+if [ "$input" = "Y" ] || [ "$input" = "y" ]; then
+	input=""
+	packages="$packages org.libreoffice.LibreOffice"
+fi
+
 echo -n "Install Lutris? [Y/N]: "
 read -r input
 

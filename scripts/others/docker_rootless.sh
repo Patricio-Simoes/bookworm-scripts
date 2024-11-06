@@ -16,4 +16,4 @@ systemctl --user start docker.service
 
 systemctl --user enable docker.service
 
-docker version
+sudo usermod -aG docker $USER

@@ -5,6 +5,8 @@
 #! If Wayland session is missing when using the proprietary nvidia drivers, use:
 #! ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
+source ./common.sh
+
 #? Gnome itself.
 
 sudo apt install gnome-session -y
@@ -27,14 +29,20 @@ sudo apt install eog totem gnome-music -y
 
 #? Extensions.
 
-sudo apt install gnome-shell-extension-manager gnome-tweaks -y
+sudo apt install gnome-shell-extension-manager -y
 
 #? Others.
 
-sudo apt install galculator gnome-disk-utility -y
+sudo apt install fonts-font-awesome galculator gnome-disk-utility gnome-tweaks -y
 
-#? Removes the help app.
+#? Common packages across DE's & WM's.
 
-sudo apt remove --purge yelp -y
+read_packages "$HOME/Documentos/bookworm-scripts/scripts/packages/base.txt"
+
+install_packages "${packages[@]}"
+
+#? Removes the unwanted apps.
+
+sudo apt remove --purge evolution-data-server gnome-music gnome-online-accounts gnome-remote-desktop gnome-sushi totem -y
 
 sudo apt autoremove -y

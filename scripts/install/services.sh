@@ -6,14 +6,6 @@ sudo apt install software-properties-common -y
 sudo add-apt-repository contrib non-free non-free-firmware
 sudo apt update
 
-# Bluetooth.
-
-sudo apt install blueman bluez -y
-
-# TLP.
-
-sudo tlp start
-
 # UFW.
 
 sudo ufw default deny incoming
@@ -26,14 +18,14 @@ curl -sS https://starship.rs/install.sh | sh
 	
 # Other packages/services.
 
-echo "Install proprietary nvidia drivers? [Y/N]: "
+echo -n "Install proprietary nvidia drivers? [Y/N]: "
 read -r nvidia
 
 if [ "$nvidia" = "Y" ] || [ "$nvidia" = "y" ]; then
 	sudo apt install -y linux-headers-amd64 linux-image-amd64 nvidia-driver
 fi
 
-echo "Install pipewrire? [Y/N]: "
+echo -n "Install pipewire? [Y/N]: "
 read -r pipewire
 
 if [ "$pipewire" = "Y" ] || [ "$pipewire" = "y" ]; then
@@ -41,7 +33,29 @@ if [ "$pipewire" = "Y" ] || [ "$pipewire" = "y" ]; then
 	systemctl --user --now enable wireplumber.service
 fi
 
-echo "Install virt-manager? [Y/N]: "
+echo -n "Install distrobox? [Y/N]: "
+read -r distrobox
+
+if [ "$distrobox" = "Y" ] || [ "$distrobox" = "y" ]; then
+	echo "Please select on of the following:"
+	echo "1. Docker setup"
+	echo "2. Rootless Docker setup"
+	echo "3. Normal, (Podman), setup"
+	echo "[Other Key]. Exit"
+	echo -n ": "
+	read -r distrobox
+	if [ "$distrobox" = "1" ]; then
+		../others/docker.sh
+		curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+	elif [ "$distrobox" = "2" ]; then
+		../others/docker_rootless.sh
+		curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+	elif [ "$distrobox" = "3" ]; then
+		sudo apt install distrobox -y
+	fi
+fi
+
+echo -n "Install virt-manager? [Y/N]: "
 read -r virtmanager
 
 if [ "$virtmanager" = "Y" ] || [ "$virtmanager" = "y" ]; then
@@ -59,14 +73,21 @@ if [ "$virtmanager" = "Y" ] || [ "$virtmanager" = "y" ]; then
 	sudo usermod -aG disk $USER
 fi
 
-echo "Install Mullvad VPN? [Y/N]: "
-read -r mullvadvpn
+echo -n "Install a VPN client? [Y/N]: "
+read -r vpn
 
-if [ "$mullvadvpn" = "Y" ] || [ "$mullvadvpn" = "y" ]; then
-	sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-	echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
-	sudo apt update
-	sudo apt install mullvad-vpn -y
+if [ "$vpn" = "Y" ] || [ "$vpn" = "y" ]; then
+	echo "Please select on of the following:"
+	echo "1. Mullvad VPN"
+	echo "[Other Key]. Exit"
+	echo -n ": "
+	read -r distrobox
+	if [ "$vpn" = "1" ]; then
+		sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+		echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+		sudo apt update
+		sudo apt install mullvad-vpn -y
+	fi
 fi
 
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
