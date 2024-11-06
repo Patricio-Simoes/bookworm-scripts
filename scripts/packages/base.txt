@@ -4,6 +4,7 @@ fonts-font-awesome
 fonts-recommended
 fonts-roboto
 fonts-terminus
+geany
 libavcodec-extra
 neofetch
 ufw
