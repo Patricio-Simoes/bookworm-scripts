@@ -43,25 +43,17 @@ while [ "$flag" = false ]; do
 done
 
 if [ "$input" = "1" ]; then
-	echo "Installing Gnome..."
-	sleep 2
-    clear
     ./scripts/install/gnome_install.sh
 elif [ "$input" = "2" ]; then
-	echo "Installing KDE..."
-	sleep 2
-    clear
     ./scripts/install/kde_install.sh
 elif [ "$input" = "3" ]; then
-	echo "Installing i3..."
-	sleep 2
-    clear
     ./scripts/install/i3_install.sh
 elif [ "$input" = "4" ]; then
-	echo "Installing Sway..."
-	sleep 2
-    clear
     ./scripts/install/sway_install.sh
+fi
+
+if which thunar > /dev/null 2>&1; then
+    xdg-mime default thunar.desktop inode/directory
 fi
 
 input=""
@@ -83,7 +75,5 @@ read -r flatpak
 if [ "$flatpak" = "Y" ] || [ "$flatpak" = "y" ]; then
 	./scripts/install/flatpak.sh
 fi
-
-clear
 
 printf "\e[1;32mWe're done here, have fun with your system!\e[0m\n"

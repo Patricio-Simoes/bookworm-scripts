@@ -2,10 +2,6 @@
 
 #? This script goes through a list of flatpak packages and installs the one the user selects.
 
-clear
-
-sleep 2
-
 sudo apt install flatpak -y
 
 #? Flathub Repository.

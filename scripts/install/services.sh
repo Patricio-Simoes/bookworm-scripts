@@ -79,6 +79,7 @@ read -r vpn
 if [ "$vpn" = "Y" ] || [ "$vpn" = "y" ]; then
 	echo "Please select on of the following:"
 	echo "1. Mullvad VPN"
+	echo "2. Proton VPN"
 	echo "[Other Key]. Exit"
 	echo -n ": "
 	read -r distrobox
@@ -87,6 +88,13 @@ if [ "$vpn" = "Y" ] || [ "$vpn" = "y" ]; then
 		echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
 		sudo apt update
 		sudo apt install mullvad-vpn -y
+	elif [ "$vpn" = "2" ]; then
+		wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.6_all.deb
+		sudo dpkg -i ./protonvpn-stable-release_1.0.6_all.deb
+		sudo apt update
+		sudo apt install proton-vpn-gnome-desktop -y
+		sudo apt install natpmpc
+		apt policy natpmpc libnatpmp*
 	fi
 fi
 
