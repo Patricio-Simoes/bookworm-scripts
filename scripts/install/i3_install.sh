@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./common.sh
+source ./scripts/install/common.sh
 
 packages=(
 	"i3"

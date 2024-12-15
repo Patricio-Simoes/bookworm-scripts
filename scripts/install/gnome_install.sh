@@ -5,7 +5,7 @@
 #! If Wayland session is missing when using the proprietary nvidia drivers, use:
 #! ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
-source ./common.sh
+source ./scripts/install/common.sh
 
 #? Gnome itself.
 
