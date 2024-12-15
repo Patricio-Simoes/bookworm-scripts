@@ -18,6 +18,8 @@ chmod 700 ./scripts/install/*
 chmod 700 ./scripts/others/*
 chmod 700 ./scripts/packages/*
 
+xdg-user-dirs-update
+
 while [ "$flag" = false ]; do
 
     echo ""

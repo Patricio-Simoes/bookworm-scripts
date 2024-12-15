@@ -12,6 +12,10 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
 
+# Change DNS to Cloudflare.
+
+echo -e "nameserver 1.1.1.1\nnameserver 1.0.0.1" | sudo tee /etc/resolv.conf > /dev/null
+
 # Starship CLI.
 
 curl -sS https://starship.rs/install.sh | sh

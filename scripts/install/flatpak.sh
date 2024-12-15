@@ -2,8 +2,6 @@
 
 #? This script goes through a list of flatpak packages and installs the one the user selects.
 
-sudo apt install flatpak -y
-
 #? Flathub Repository.
 
 flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -72,14 +70,6 @@ read -r input
 if [ "$input" = "Y" ] || [ "$input" = "y" ]; then
 	input=""
 	packages="$packages flathub md.obsidian.Obsidian"
-fi
-
-echo -n "Install OnlyOffice? [Y/N]: "
-read -r input
-
-if [ "$input" = "Y" ] || [ "$input" = "y" ]; then
-	input=""
-	packages="$packages flathub org.onlyoffice.desktopeditors"
 fi
 
 echo -n "Install Steam? [Y/N]: "
