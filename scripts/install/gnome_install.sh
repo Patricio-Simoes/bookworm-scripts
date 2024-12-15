@@ -5,7 +5,9 @@
 #! If Wayland session is missing when using the proprietary nvidia drivers, use:
 #! ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
-source ./scripts/install/common.sh
+BOOKWORM_SCRIPTS=$1
+
+source $BOOKWORM_SCRIPTS/scripts/install/common.sh
 
 #? Gnome itself.
 
@@ -37,7 +39,7 @@ sudo apt install fonts-font-awesome galculator gnome-disk-utility gnome-tweaks -
 
 #? Common packages across DE's & WM's.
 
-read_packages "$HOME/Documentos/bookworm-scripts/scripts/packages/base.txt"
+read_packages "$BOOKWORM_SCRIPTS/scripts/packages/base.txt"
 
 install_packages "${packages[@]}"
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-source ./scripts/install/common.sh
+BOOKWORM_SCRIPTS=$1
+
+source $BOOKWORM_SCRIPTS/scripts/install/common.sh
 
 packages=(
 	"i3"
@@ -10,8 +12,8 @@ packages=(
 
 # Read common packages from file.
 
-read_packages "$HOME/Documentos/bookworm-scripts/scripts/packages/base_x11.txt"
-read_packages "$HOME/Documentos/bookworm-scripts/scripts/packages/base_wm.txt"
-read_packages "$HOME/Documentos/bookworm-scripts/scripts/packages/base.txt"
+read_packages "$BOOKWORM_SCRIPTS/scripts/packages/base_x11.txt"
+read_packages "$BOOKWORM_SCRIPTS/scripts/packages/base_wm.txt"
+read_packages "$BOOKWORM_SCRIPTS/scripts/packages/base.txt"
 
 install_packages "${packages[@]}"

@@ -12,6 +12,8 @@ sleep 5
 
 flag=false
 
+BOOKWORM_SCRIPTS=$(pwd)
+
 input=""
 
 chmod 700 ./scripts/install/*
@@ -45,13 +47,13 @@ while [ "$flag" = false ]; do
 done
 
 if [ "$input" = "1" ]; then
-    ./scripts/install/gnome_install.sh
+    ./scripts/install/gnome_install.sh $BOOKWORM_SCRIPTS
 elif [ "$input" = "2" ]; then
     ./scripts/install/kde_install.sh
 elif [ "$input" = "3" ]; then
-    ./scripts/install/i3_install.sh
+    ./scripts/install/i3_install.sh $BOOKWORM_SCRIPTS
 elif [ "$input" = "4" ]; then
-    ./scripts/install/sway_install.sh
+    ./scripts/install/sway_install.sh $BOOKWORM_SCRIPTS
 fi
 
 if which thunar > /dev/null 2>&1; then
