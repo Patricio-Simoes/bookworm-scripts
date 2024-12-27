@@ -23,7 +23,7 @@ WOFI_THEMES=(".config/wofi/themes/dracula.css" ".config/wofi/themes/everforest.c
 # Alacritty.
 sed -i "2s|.*|  - ${ALACRITTY_THEMES[$NEW_THEME]}|" $HOME/.config/alacritty/alacritty.yml
 # Background.
-sed -i "7s|.*|set \$wallpaper ${BACKGROUNDS[$NEW_THEME]}|" $HOME/.config/sway/config.d/monitors
+sed -i "8s|.*|set \$wallpaper ${BACKGROUNDS[$NEW_THEME]}|" $HOME/.config/sway/config.d/monitors
 # Conky.
 sed -i "3s|.*|local config_path = home .. '${CONKY_THEMES[$NEW_THEME]}'|" $HOME/.config/conky/wayland/config_amd.conf
 $HOME/.config/conky/start.sh
@@ -34,8 +34,14 @@ flatpak override --user --env=ICON_THEME="${ICON_THEMES[$NEW_THEME]}"
 sed -i "23s|.*|color_scheme="${GEANY_THEMES[$NEW_THEME]}"|" $HOME/.config/geany/geany.conf
 # GTK theme.
 gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEMES[$NEW_THEME]}"
+sed -i "1s|.*|gtk-theme-name=\""${GTK_THEMES[$NEW_THEME]}"\"|" $HOME/.config/gtk-2.0/settings.ini
+sed -i "2s|.*|gtk-theme-name="${GTK_THEMES[$NEW_THEME]}"|" $HOME/.config/gtk-3.0/settings.ini
+sed -i "2s|.*|gtk-theme-name="${GTK_THEMES[$NEW_THEME]}"|" $HOME/.config/gtk-4.0/settings.ini
 # Icon theme.
 gsettings set org.gnome.desktop.interface icon-theme "${ICON_THEMES[$NEW_THEME]}"
+sed -i "2s|.*|gtk-icon-theme-name=\""${ICON_THEMES[$NEW_THEME]}"\"|" $HOME/.config/gtk-2.0/settings.ini
+sed -i "3s|.*|gtk-icon-theme-name="${ICON_THEMES[$NEW_THEME]}"|" $HOME/.config/gtk-3.0/settings.ini
+sed -i "3s|.*|gtk-icon-theme-name="${ICON_THEMES[$NEW_THEME]}"|" $HOME/.config/gtk-4.0/settings.ini
 # Sway.
 sed -i "32s|.*|include ${SWAY_THEMES[$NEW_THEME]}|" $HOME/.config/sway/config
 # Swaylock.
